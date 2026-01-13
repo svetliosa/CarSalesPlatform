@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+    http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.23.xsd">
+	<changeSet id="create-table-roles" author="svetliosa">
+		<createTable tableName="ROLES">
+			<column name="ID" type="INT" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false"/>
+			</column>
+			<column name="NAME" type="VARCHAR(50)">
+				<constraints nullable="false" unique="true"/>
+			</column>
+		</createTable>
+
+		<insert tableName="ROLES">
+			<column name="NAME" value="User"/>
+		</insert>
+		<insert tableName="roles">
+			<column name="NAME" value="Dealer"/>
+		</insert>
+		<insert tableName="roles">
+			<column name="NAME" value="Admin"/>
+		</insert>
+	</changeSet>
+</databaseChangeLog>

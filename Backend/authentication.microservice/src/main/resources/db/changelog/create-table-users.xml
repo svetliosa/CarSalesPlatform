@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+    http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.23.xsd">
+	<changeSet id="create-table-users" author="svetliosa">
+		<createTable tableName="USERS">
+			<column name="ID" type="BIGINT" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false"/>
+			</column>
+			<column name="EMAIL" type="VARCHAR(255)">
+				<constraints nullable="false" unique="true"/>
+			</column>
+			<column name="PASSWORD" type="VARCHAR(255)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="ROLE_ID" type="INT">
+				<constraints nullable="false"/>
+			</column>
+			<column name="STATUS" type="VARCHAR(50)" defaultValue="ACTIVE">
+				<constraints nullable="false"/>
+			</column>
+			<column name="CREATE_DATE" type="DATETIME2"/>
+			<column name="UPDATE_DATE" type="DATETIME2"/>
+		</createTable>
+		<createIndex indexName="IDX_USERS_EMAIL" tableName="USERS" unique="true">
+			<column name="EMAIL"/>
+		</createIndex>
+		<addForeignKeyConstraint
+			baseTableName="USERS"
+			baseColumnNames="ROLE_ID"
+			referencedTableName="ROLES"
+			referencedColumnNames="ID"
+			constraintName="FK_USERS_ROLES"/>
+	</changeSet>
+</databaseChangeLog>
